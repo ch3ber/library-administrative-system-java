@@ -4,7 +4,6 @@ Library management system, allows to manage book inventories, member registratio
 
 
 ## Screenshots
-
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 
