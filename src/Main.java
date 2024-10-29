@@ -7,6 +7,25 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.FlowLayout;
+import java.awt.CardLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.SwingConstants;
+import java.awt.GridLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+
+import src.views.Menu;
+import src.views.SecondaryMenu;
+
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.Component;
+import java.awt.BorderLayout;
+import java.awt.Rectangle;
+import java.awt.Cursor;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 public class Main {
 
@@ -40,53 +59,36 @@ public class Main {
 	 */
 	private void initialize() {
 		frmSistemaLibreria = new JFrame();
+		frmSistemaLibreria.setBackground(new Color(236, 240, 248));
+		frmSistemaLibreria.setResizable(false);
 		frmSistemaLibreria.setTitle("Sistema libreria");
-		frmSistemaLibreria.setBounds(100, 100, 636, 433);
+		frmSistemaLibreria.setBounds(100, 100, 800, 450);
 		frmSistemaLibreria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSistemaLibreria.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(0, 0, 620, 394);
+		panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		panel.setBounds(0, 0, 784, 411);
+		panel.setBackground(new Color(236, 240, 248));
 		frmSistemaLibreria.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Inicio");
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 32));
-		lblNewLabel.setBounds(190, 11, 118, 43);
-		panel.add(lblNewLabel);
+		JPanel menu = new Menu();
+		menu.setLocation(0, 0);
+		menu.setSize(168, 411);
+		panel.add(menu);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(238, 238, 238));
-		panel_1.setBounds(0, 0, 180, 394);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		JPanel secondaryMenu = new SecondaryMenu();
+		secondaryMenu.setLocation(178, 53);
+		secondaryMenu.setSize(371, 44);
+		panel.add(secondaryMenu);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setForeground(new Color(255, 255, 255));
-		panel_2.setBackground(new Color(43, 43, 232));
-		panel_2.setBounds(26, 65, 154, 32);
-		panel_1.add(panel_2);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Rentar libro");
-		lblNewLabel_1_1.setForeground(new Color(255, 255, 255));
-		panel_2.add(lblNewLabel_1_1);
-		lblNewLabel_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		
-		JPanel panel_2_1 = new JPanel();
-		panel_2_1.setForeground(Color.WHITE);
-		panel_2_1.setBackground(new Color(43, 43, 232));
-		panel_2_1.setBounds(26, 108, 154, 32);
-		panel_1.add(panel_2_1);
-		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Buscar libro");
-		lblNewLabel_1_1_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		panel_2_1.add(lblNewLabel_1_1_1);
-		
-		JLabel lblNewLabel_1 = new JLabel("Texto pagina inicio");
-		lblNewLabel_1.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(190, 57, 295, 22);
-		panel.add(lblNewLabel_1);
+		JLabel sectionName = new JLabel("Inventario");
+		sectionName.setHorizontalAlignment(SwingConstants.LEFT);
+		sectionName.setFont(new Font("Segoe UI", Font.BOLD, 32));
+		sectionName.setBounds(178, 11, 371, 43);
+		panel.add(sectionName);
+		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{sectionName, menu}));
+		frmSistemaLibreria.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{frmSistemaLibreria.getContentPane(), panel, menu, sectionName}));
 	}
 }
