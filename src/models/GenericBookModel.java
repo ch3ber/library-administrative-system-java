@@ -1,13 +1,13 @@
 package src.models;
 
-public abstract class GenericBook {
+public abstract class GenericBookModel {
 
   private String titulo;
   private String autor;
   private String categoria;
   private boolean disponible;
 
-  public GenericBook(String titulo, String autor, String categoria, boolean disponible) {
+  public GenericBookModel(String titulo, String autor, String categoria, boolean disponible) {
     this.titulo = titulo;
     this.autor = autor;
     this.categoria = categoria;
