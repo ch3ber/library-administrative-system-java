@@ -1,7 +1,7 @@
 package src;
 
-import src.controlers.InventoryController;
-import src.controlers.LoanController;
+import src.controllers.InventoryController;
+import src.controllers.LoanController;
 import src.views.HomeMenuView;
 import src.views.InventoryMenuView;
 import src.views.LoanMenuView;
