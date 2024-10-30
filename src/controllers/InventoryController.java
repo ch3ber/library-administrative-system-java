@@ -2,6 +2,11 @@ package src.controllers;
 
 import javax.swing.*;
 
+/**
+ * @author Leonardo y Eber Alejo
+ * @version 1.0.0
+ * Eval user options from views and execute operations in InventoryModel.
+ */
 public class InventoryController {
   public void evalOption(Object selectedOption) {
     String parsedSelectedOption = "";
