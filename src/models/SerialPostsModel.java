@@ -1,9 +1,9 @@
 package src.models;
 
-public class SerialPosts extends GenericBook {
+public class SerialPostsModel extends GenericBookModel {
   private String ISSN; //EQUIVALENTE DE ISBN PARA REVISTAS , PERIODICOS , ETC.
 
-  public SerialPosts(String titulo, String autor, String ISSN, String categoria, boolean disponible) {
+  public SerialPostsModel(String titulo, String autor, String ISSN, String categoria, boolean disponible) {
     super(titulo, autor, categoria, disponible);
     this.ISSN = ISSN;
   }

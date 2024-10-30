@@ -1,4 +1,4 @@
 package src.models;
 
-public class Library {
+public class LoanModel {
 }
