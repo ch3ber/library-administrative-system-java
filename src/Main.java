@@ -1,94 +1,137 @@
 package src;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Color;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.FlowLayout;
-import java.awt.CardLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.SwingConstants;
-import java.awt.GridLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
-import src.views.Menu;
-import src.views.SecondaryMenu;
-
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import java.awt.Component;
-import java.awt.BorderLayout;
-import java.awt.Rectangle;
-import java.awt.Cursor;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
+import javax.swing.JOptionPane;
 
 public class Main {
+	
+	public static void mostrarMenuInventario() {
+        String opcionInventario = "";
 
-	private JFrame frmSistemaLibreria;
+        while (opcionInventario.equals("3. Atrás")!=true) {
+            Object seleccion = JOptionPane.showInputDialog(
+                null, "Escoja una opción", "Menú Inventario", JOptionPane.INFORMATION_MESSAGE,
+                null, new Object[]{
+                    "1. Agregar un nuevo libro",
+                    "2. Buscar un libro",
+                    "3. Atrás"
+                },
+                "1. Agregar un nuevo libro");
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main window = new Main();
-					window.frmSistemaLibreria.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+            if (seleccion == null) {
+                break;
+            }
 
-	/**
-	 * Create the application.
-	 */
-	public Main() {
-		initialize();
-	}
+            opcionInventario = seleccion.toString();
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmSistemaLibreria = new JFrame();
-		frmSistemaLibreria.setBackground(new Color(236, 240, 248));
-		frmSistemaLibreria.setResizable(false);
-		frmSistemaLibreria.setTitle("Sistema libreria");
-		frmSistemaLibreria.setBounds(100, 100, 800, 450);
-		frmSistemaLibreria.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmSistemaLibreria.getContentPane().setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		panel.setBounds(0, 0, 784, 411);
-		panel.setBackground(new Color(236, 240, 248));
-		frmSistemaLibreria.getContentPane().add(panel);
-		panel.setLayout(null);
-		
-		JPanel menu = new Menu();
-		menu.setLocation(0, 0);
-		menu.setSize(168, 411);
-		panel.add(menu);
-		
-		JPanel secondaryMenu = new SecondaryMenu();
-		secondaryMenu.setLocation(178, 53);
-		secondaryMenu.setSize(371, 44);
-		panel.add(secondaryMenu);
-		
-		JLabel sectionName = new JLabel("Inventario");
-		sectionName.setHorizontalAlignment(SwingConstants.LEFT);
-		sectionName.setFont(new Font("Segoe UI", Font.BOLD, 32));
-		sectionName.setBounds(178, 11, 371, 43);
-		panel.add(sectionName);
-		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{sectionName, menu}));
-		frmSistemaLibreria.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{frmSistemaLibreria.getContentPane(), panel, menu, sectionName}));
-	}
+            switch (opcionInventario) {
+                case "1. Agregar un nuevo libro":
+                    JOptionPane.showMessageDialog(null, "Opción seleccionada: Agregar un nuevo libro");
+                 // TODAVIA NO SE IMPLEMENTA LA FUNCION
+                    break;
+
+                case "2. Buscar un libro":
+                    JOptionPane.showMessageDialog(null, "Opción seleccionada: Buscar un libro");
+                 // TODAVIA NO SE IMPLEMENTA LA FUNCION
+                    break;
+
+                case "3. Atrás":
+                    // Regresar al menú principal
+                    break;
+
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción no válida. Intenta de nuevo.");
+                    break;
+            }
+        }
+    }
+
+    public static void mostrarMenuPrestamos() {
+        String opcionPrestamos = "";
+
+        while (opcionPrestamos.equals("3. Atrás")!=true) {
+            Object seleccion = JOptionPane.showInputDialog(
+                null, "Escoja una opción", "Menú Préstamos", JOptionPane.INFORMATION_MESSAGE,
+                null, new Object[]{
+                    "1. Realizar un préstamo",
+                    "2. Devolver un libro",
+                    "3. Atrás"
+                },
+                "1. Realizar un préstamo");
+
+            if (seleccion == null) {
+                break;
+            }
+
+            opcionPrestamos = seleccion.toString();
+
+            switch (opcionPrestamos) {
+                case "1. Realizar un préstamo":
+                    JOptionPane.showMessageDialog(null, "Opción seleccionada: Realizar un préstamo");
+                 // TODAVIA NO SE IMPLEMENTA LA FUNCION
+                    break;
+
+                case "2. Devolver un libro":
+                    JOptionPane.showMessageDialog(null, "Opción seleccionada: Devolver un libro");
+                 // TODAVIA NO SE IMPLEMENTA LA FUNCION
+                    break;
+
+                case "3. Atrás":
+                    // Regresar al menú principal
+                    break;
+
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción no válida. Intenta de nuevo.");
+                    break;
+            }
+        }
+    }
+    public static void main(String[] args) {
+      
+        String opcion = "";
+
+        while (opcion.equals("4. Salir")!=true) {
+            try {
+                Object seleccion = JOptionPane.showInputDialog(
+                    null, "Escoja una opción", "Menú Biblioteca", JOptionPane.INFORMATION_MESSAGE,
+                    null, new Object[]{
+                        "1. Inventario",
+                        "2. Registrar un nuevo usuario",
+                        "3. Préstamos",
+                        "4. Salir"
+                    },
+                    "1. Inventario");
+
+                if (seleccion == null) {
+                    
+                    break;
+                }
+
+                opcion = seleccion.toString();
+
+                switch (opcion) {
+                    case "1. Inventario":
+                        mostrarMenuInventario();
+                        break;
+
+                    case "2. Registrar un nuevo usuario":
+                        JOptionPane.showMessageDialog(null, "Opción seleccionada: Registrar Usuario");
+                        // TODAVIA NO SE IMPLEMENTA LA FUNCION
+                        break;
+
+                    case "3. Préstamos":
+                        mostrarMenuPrestamos();
+                        break;
+
+                    case "4. Salir":
+                        JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
+                        break;
+
+                    default:
+                        JOptionPane.showMessageDialog(null, "Opción no válida. Intenta de nuevo.");
+                        break;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + e.getMessage());
+            }
+        }
+    }
 }
