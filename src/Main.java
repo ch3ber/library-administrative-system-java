@@ -2,9 +2,9 @@ package src;
 
 import src.controllers.InventoryController;
 import src.controllers.LoanController;
-import src.views.HomeMenuView;
-import src.views.InventoryView;
-import src.views.LoanMenuView;
+import src.views.HomeMenuViews;
+import src.views.InventoryViews;
+import src.views.LoanMenuViews;
 
 import javax.swing.JOptionPane;
 
@@ -14,9 +14,9 @@ public class Main {
     String parsedSelectedOption = "";
 
     // Views
-    HomeMenuView homeMenuView = new HomeMenuView();
-    InventoryView inventoryView = new InventoryView();
-    LoanMenuView loanMenuView = new LoanMenuView();
+    HomeMenuViews homeMenuViews = new HomeMenuViews();
+    InventoryViews inventoryViews = new InventoryViews();
+    LoanMenuViews loanMenuViews = new LoanMenuViews();
 
     // Controllers
     InventoryController inventoryController = new InventoryController();
@@ -24,7 +24,7 @@ public class Main {
 
     while (!parsedSelectedOption.equals("4. Salir")) {
       try {
-        selectedOption = homeMenuView.selectMenuOption();
+        selectedOption = homeMenuViews.selectMenuOption();
 
         // the user select's cancel button
         if (selectedOption == null) {
@@ -36,14 +36,14 @@ public class Main {
 
         switch (parsedSelectedOption) {
           case "1. Inventario":
-            inventoryController.evalOption(inventoryView.selectMenuOption());
+            inventoryController.evalOption(inventoryViews.selectMenuOption());
             break;
           case "2. Registrar un nuevo usuario":
             JOptionPane.showMessageDialog(null, "Opción seleccionada: Registrar Usuario");
             // TODAVIA NO SE IMPLEMENTA LA FUNCION
             break;
           case "3. Préstamos":
-            loanController.evalOption(loanMenuView.selectMenuOption());
+            loanController.evalOption(loanMenuViews.selectMenuOption());
             break;
           case "4. Salir":
             JOptionPane.showMessageDialog(null, "Saliendo del sistema...");

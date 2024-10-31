@@ -2,7 +2,7 @@ package src.views;
 
 import javax.swing.*;
 
-public class HomeMenuView extends MenuView{
+public class HomeMenuViews {
   public Object selectMenuOption() {
     return JOptionPane.showInputDialog(
         null, "Escoja una opción", "Menú Biblioteca", JOptionPane.INFORMATION_MESSAGE,

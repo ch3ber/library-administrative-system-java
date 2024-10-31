@@ -2,7 +2,7 @@ package src.views;
 
 import javax.swing.*;
 
-public class LoanMenuView extends MenuView {
+public class LoanMenuViews {
   public Object selectMenuOption () {
     return JOptionPane.showInputDialog(
         null, "Escoja una opción", "Menú Préstamos", JOptionPane.INFORMATION_MESSAGE,

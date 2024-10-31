@@ -2,7 +2,7 @@ package src.views;
 
 import javax.swing.*;
 
-public class InventoryView extends MenuView {
+public class InventoryViews {
   public Object selectMenuOption() {
     return JOptionPane.showInputDialog(
         null,
