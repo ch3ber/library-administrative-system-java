@@ -3,7 +3,7 @@ package src;
 import src.controllers.InventoryController;
 import src.controllers.LoanController;
 import src.views.HomeMenuView;
-import src.views.InventoryMenuView;
+import src.views.InventoryView;
 import src.views.LoanMenuView;
 
 import javax.swing.JOptionPane;
@@ -15,7 +15,7 @@ public class Main {
 
     // Views
     HomeMenuView homeMenuView = new HomeMenuView();
-    InventoryMenuView inventoryMenuView = new InventoryMenuView();
+    InventoryView inventoryView = new InventoryView();
     LoanMenuView loanMenuView = new LoanMenuView();
 
     // Controllers
@@ -24,7 +24,7 @@ public class Main {
 
     while (!parsedSelectedOption.equals("4. Salir")) {
       try {
-        selectedOption = homeMenuView.selectOption();
+        selectedOption = homeMenuView.selectMenuOption();
 
         // the user select's cancel button
         if (selectedOption == null) {
@@ -36,14 +36,14 @@ public class Main {
 
         switch (parsedSelectedOption) {
           case "1. Inventario":
-            inventoryController.evalOption(inventoryMenuView.selectOption());
+            inventoryController.evalOption(inventoryView.selectMenuOption());
             break;
           case "2. Registrar un nuevo usuario":
             JOptionPane.showMessageDialog(null, "Opción seleccionada: Registrar Usuario");
             // TODAVIA NO SE IMPLEMENTA LA FUNCION
             break;
           case "3. Préstamos":
-            loanController.evalOption(loanMenuView.selectOption());
+            loanController.evalOption(loanMenuView.selectMenuOption());
             break;
           case "4. Salir":
             JOptionPane.showMessageDialog(null, "Saliendo del sistema...");

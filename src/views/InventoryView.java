@@ -2,8 +2,8 @@ package src.views;
 
 import javax.swing.*;
 
-public class InventoryMenuView extends MenuView {
-  public Object selectOption() {
+public class InventoryView extends MenuView {
+  public Object selectMenuOption() {
     return JOptionPane.showInputDialog(
         null,
         "Escoja una opción",
@@ -16,4 +16,5 @@ public class InventoryMenuView extends MenuView {
         },
         "1. Agregar un nuevo libro");
   }
+  
 }

@@ -4,8 +4,6 @@ package src.models;
  * Clase que representa un libro específico, se utiliza ISBN como identificador.
  */
 public class BookModel extends GenericBookModel {
-  private String ISBN;
-
   /**
    * Constructor de la clase Libro
    *
@@ -17,15 +15,8 @@ public class BookModel extends GenericBookModel {
    */
 
   public BookModel(String titulo, String autor, String ISBN, String categoria, boolean disponible) {
-    super(titulo, autor, categoria, disponible);
-    this.ISBN = ISBN;
+    super(titulo, autor, ISBN, categoria, disponible);
+    
   }
 
-  public String getISBN() {
-    return ISBN;
-  }
-
-  public void setISBN(String ISBN) {
-    this.ISBN = ISBN;
-  }
 }

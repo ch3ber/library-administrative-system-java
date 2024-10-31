@@ -12,5 +12,5 @@ public abstract class MenuView {
    * seleccionada por el usuario.
    * @return {Object} - retorna la opción seleccionada por el usuario.
    */
-  public abstract Object selectOption ();
+  public abstract Object selectMenuOption ();
 }
