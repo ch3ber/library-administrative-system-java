@@ -1,16 +1,22 @@
 package src.models;
 
-import java.awt.print.Book;
 import java.util.ArrayList;
 import src.utils.BookSearchType;
 
 public class LibraryModel {
-  // List to store all the books in the library
+  private static LibraryModel instance;
   private ArrayList<GenericBookModel> books = new ArrayList<>();
 
   BookModel bookDomie = new BookModel("Title test", "tester", "777", "category test", 7);
-  public LibraryModel() {
+  private LibraryModel() {
     books.add(bookDomie);
+  }
+
+  public static LibraryModel getInstance() {
+    if (instance == null) {
+      instance = new LibraryModel();
+    }
+    return instance;
   }
 
   // Method to add a book or publication to the library

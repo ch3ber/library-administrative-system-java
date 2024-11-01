@@ -15,15 +15,11 @@ import javax.swing.*;
  * Eval user options from views and execute operations in InventoryModel.
  */
 public class InventoryController {
-  LibraryModel library;
+  LibraryModel libraryModel = LibraryModel.getInstance();
   BookInfoView bookInfoView = new BookInfoView();
 
-  public InventoryController(LibraryModel library) {
-    this.library = library;
-  }
-
   private void hanldeFind(String queryId, BookSearchType bookSearchType) {
-    GenericBookModel foundBook = library.findBook(queryId, bookSearchType);
+    GenericBookModel foundBook = libraryModel.findBook(queryId, bookSearchType);
     if (foundBook == null) {
       JOptionPane.showMessageDialog(null, "Libro no encontrado.");
       return;
@@ -80,7 +76,7 @@ public class InventoryController {
           id = JOptionPane.showInputDialog(null, "Ingresa su ISBN", "");
 
           numCopiesParsed = Integer.parseInt(numCopies);
-          library.addBook(new BookModel(title, author, id, category, numCopiesParsed));
+          libraryModel.addBook(new BookModel(title, author, id, category, numCopiesParsed));
           parsedSelectedOption = "Atrás";
           break;
         case "Agregar una publicacion":
@@ -92,7 +88,7 @@ public class InventoryController {
           id = JOptionPane.showInputDialog(null, "Ingresa su ISSN", "");
 
           numCopiesParsed = Integer.parseInt(numCopies);
-          library.addSerialPost(new SerialPostsModel(title, author, id, category, numCopiesParsed));
+          libraryModel.addSerialPost(new SerialPostsModel(title, author, id, category, numCopiesParsed));
           parsedSelectedOption = "Atrás";
           break;
         case "Actualizar un libro (ID)":

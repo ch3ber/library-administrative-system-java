@@ -3,7 +3,6 @@ package src;
 import src.controllers.InventoryController;
 import src.controllers.LoanController;
 
-import src.models.LibraryModel;
 import src.views.HomeMenuViews;
 import src.views.InventoryViews;
 import src.views.LoanMenuViews;
@@ -20,11 +19,8 @@ public class Main {
     InventoryViews inventoryViews = new InventoryViews();
     LoanMenuViews loanMenuViews = new LoanMenuViews();
 
-    // Models
-    LibraryModel libraryModel = new LibraryModel();
-
     // Controllers
-    InventoryController inventoryController = new InventoryController(libraryModel);
+    InventoryController inventoryController = new InventoryController();
     LoanController loanController = new LoanController();
 
     while (!parsedSelectedOption.equals("Salir")) {
