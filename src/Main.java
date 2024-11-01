@@ -55,6 +55,7 @@ public class Main {
             break;
           case "Salir":
             JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
+            parsedSelectedOption = "Salir";
             break;
           default:
             JOptionPane.showMessageDialog(null, "Opción no válida. Intenta de nuevo.");
