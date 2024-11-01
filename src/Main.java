@@ -1,11 +1,8 @@
 package src;
 
-import src.controllers.InventoryController;
-import src.controllers.LoanController;
+import src.controllers.*;
+import src.views.*;
 
-import src.views.HomeMenuViews;
-import src.views.InventoryViews;
-import src.views.LoanMenuViews;
 
 import javax.swing.JOptionPane;
 
@@ -18,10 +15,12 @@ public class Main {
     HomeMenuViews homeMenuViews = new HomeMenuViews();
     InventoryViews inventoryViews = new InventoryViews();
     LoanMenuViews loanMenuViews = new LoanMenuViews();
+    UserViews userViews = new UserViews();
 
     // Controllers
     InventoryController inventoryController = new InventoryController();
     LoanController loanController = new LoanController();
+    UserController userController = new UserController();
 
     while (!parsedSelectedOption.equals("Salir")) {
       try {
@@ -40,7 +39,7 @@ public class Main {
             inventoryController.evalOption(inventoryViews.selectMenuOption());
             break;
           case "Usuarios":
-            JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
+            userController.evalOption(userViews.selectMenuOption());
             break;
           case "Préstamos":
 //            loanController.evalOption(loanMenuViews.selectMenuOption());
