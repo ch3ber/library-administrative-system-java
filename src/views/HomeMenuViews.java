@@ -8,7 +8,7 @@ public class HomeMenuViews {
         null, "Escoja una opción:", "Menú Biblioteca", JOptionPane.INFORMATION_MESSAGE,
         null, new Object[]{
             "Inventario",
-            "Usurios",
+            "Usuarios",
             "Préstamos",
             "Devoluciones",
             "Salir"

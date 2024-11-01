@@ -7,11 +7,8 @@ public class LibraryModel {
   private static LibraryModel instance;
   private ArrayList<GenericBookModel> books = new ArrayList<>();
 
-  BookModel bookDomie = new BookModel("Title test", "tester", "777", "category test", 7);
-  private LibraryModel() {
-    books.add(bookDomie);
-  }
-
+  
+  //Singleton
   public static LibraryModel getInstance() {
     if (instance == null) {
       instance = new LibraryModel();

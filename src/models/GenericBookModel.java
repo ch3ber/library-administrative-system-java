@@ -2,11 +2,11 @@ package src.models;
 
 public abstract class GenericBookModel {
 
-	private String titulo;
-	private String autor;
-	private String categoria;
-	private int cantidadCopias;
-	private String ID;
+	protected String titulo;
+	protected String autor;
+	protected String categoria;
+	protected int cantidadCopias;
+	protected String ID;
 
 	public GenericBookModel(String titulo, String autor, String ID, String categoria, int cantidadCopias) {
 		this.titulo = titulo;
@@ -16,9 +16,8 @@ public abstract class GenericBookModel {
 		this.cantidadCopias = cantidadCopias;
 	}
 
-	public String getAllInfo() {
-		return titulo + "\n" + autor + "\n" + categoria + "\n" + cantidadCopias + "\n" + ID;
-	}
+	public abstract String getAllInfo(); 
+	
 
 	public String getTitulo() {
 		return titulo;
