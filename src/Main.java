@@ -27,7 +27,7 @@ public class Main {
     InventoryController inventoryController = new InventoryController(libraryModel);
     LoanController loanController = new LoanController();
 
-    while (!parsedSelectedOption.equals("5. Salir")) {
+    while (!parsedSelectedOption.equals("Salir")) {
       try {
         selectedOption = homeMenuViews.selectHomeMenuOption();
 
