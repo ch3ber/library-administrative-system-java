@@ -10,11 +10,15 @@ public class InventoryViews {
         "Menú Inventario",
         JOptionPane.INFORMATION_MESSAGE,
         null, new Object[]{
-            "1. Agregar un nuevo libro",
-            "2. Buscar un libro",
-            "3. Atrás"
+            "Buscar por ID",
+            "Buscar por titulo",
+            "Buscar por autor",
+            "Agregar un nuevo libro",
+            "Agregar una publicacion",
+            "Actualizar un libro (ID)",
+            "Eliminar un libro (ID)",
+            "Atrás"
         },
-        "1. Agregar un nuevo libro");
+        "Buscar por ID");
   }
-  
 }

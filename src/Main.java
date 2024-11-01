@@ -2,6 +2,8 @@ package src;
 
 import src.controllers.InventoryController;
 import src.controllers.LoanController;
+
+import src.models.LibraryModel;
 import src.views.HomeMenuViews;
 import src.views.InventoryViews;
 import src.views.LoanMenuViews;
@@ -18,13 +20,16 @@ public class Main {
     InventoryViews inventoryViews = new InventoryViews();
     LoanMenuViews loanMenuViews = new LoanMenuViews();
 
+    // Models
+    LibraryModel libraryModel = new LibraryModel();
+
     // Controllers
-    InventoryController inventoryController = new InventoryController();
+    InventoryController inventoryController = new InventoryController(libraryModel);
     LoanController loanController = new LoanController();
 
-    while (!parsedSelectedOption.equals("4. Salir")) {
+    while (!parsedSelectedOption.equals("5. Salir")) {
       try {
-        selectedOption = homeMenuViews.selectMenuOption();
+        selectedOption = homeMenuViews.selectHomeMenuOption();
 
         // the user select's cancel button
         if (selectedOption == null) {
@@ -35,17 +40,20 @@ public class Main {
         parsedSelectedOption = selectedOption.toString();
 
         switch (parsedSelectedOption) {
-          case "1. Inventario":
+          case "Inventario":
             inventoryController.evalOption(inventoryViews.selectMenuOption());
             break;
-          case "2. Registrar un nuevo usuario":
-            JOptionPane.showMessageDialog(null, "Opción seleccionada: Registrar Usuario");
-            // TODAVIA NO SE IMPLEMENTA LA FUNCION
+          case "Usuarios":
+            JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
             break;
-          case "3. Préstamos":
-            loanController.evalOption(loanMenuViews.selectMenuOption());
+          case "Préstamos":
+//            loanController.evalOption(loanMenuViews.selectMenuOption());
+            JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
             break;
-          case "4. Salir":
+          case "Devoluciones":
+            JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
+            break;
+          case "Salir":
             JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
             break;
           default:

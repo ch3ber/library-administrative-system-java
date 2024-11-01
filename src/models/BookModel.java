@@ -14,7 +14,7 @@ public class BookModel extends GenericBookModel {
    * @param disponible Indica si el libro está disponible para préstamo
    */
 
-  public BookModel(String titulo, String autor, String ISBN, String categoria, boolean disponible) {
+  public BookModel(String titulo, String autor, String ISBN, String categoria, int disponible) {
     super(titulo, autor, ISBN, categoria, disponible);
     
   }

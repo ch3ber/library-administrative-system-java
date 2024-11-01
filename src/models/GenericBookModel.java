@@ -5,15 +5,19 @@ public abstract class GenericBookModel {
 	private String titulo;
 	private String autor;
 	private String categoria;
-	private boolean disponible;
+	private int cantidadCopias;
 	private String ID;
 
-	public GenericBookModel(String titulo, String autor, String ID, String categoria, boolean disponible) {
+	public GenericBookModel(String titulo, String autor, String ID, String categoria, int cantidadCopias) {
 		this.titulo = titulo;
 		this.autor = autor;
 		this.ID = ID;
 		this.categoria = categoria;
-		this.disponible = disponible;
+		this.cantidadCopias = cantidadCopias;
+	}
+
+	public String getAllInfo() {
+		return titulo + "\n" + autor + "\n" + categoria + "\n" + cantidadCopias + "\n" + ID;
 	}
 
 	public String getTitulo() {
@@ -44,11 +48,11 @@ public abstract class GenericBookModel {
 		this.categoria = categoria;
 	}
 
-	public boolean isDisponible() {
-		return disponible;
+	public int getCantidadCopias() {
+		return cantidadCopias;
 	}
 
-	public void setDisponible(boolean disponible) {
-		this.disponible = disponible;
+	public void setCantidadCopias(int cantidadCopias) {
+		this.cantidadCopias = cantidadCopias;
 	}
 }

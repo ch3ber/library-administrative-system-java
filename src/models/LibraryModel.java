@@ -1,49 +1,62 @@
 package src.models;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
+import src.utils.BookSearchType;
 
 public class LibraryModel {
+  // List to store all the books in the library
+  private ArrayList<GenericBookModel> books = new ArrayList<>();
 
-	ArrayList<GenericBookModel> books = new ArrayList<>(); // GenericBookModel para soportar ambas subclases
+  BookModel bookDomie = new BookModel("Title test", "tester", "777", "category test", 7);
+  public LibraryModel() {
+    books.add(bookDomie);
+  }
 
-	// Método para agregar un libro o publicación
-	public void addBook(GenericBookModel book) {
-		books.add(book);
-	}
+  // Method to add a book or publication to the library
+  public void addBook(BookModel book) {
+    books.add(book);
+  }
 
-	// Método para encontrar un libro o publicación por autor, ID o título
-	public GenericBookModel findBookByAuthor(String query, String searchType) {
-		GenericBookModel foundedBook = null;
+  public void addSerialPost(SerialPostsModel book) {
+    books.add(book);
+  }
 
-		for (GenericBookModel book : books) {
-			if (searchType.equals("Autor") && book.getAutor().equals(query)) {
-				foundedBook = book;
-				break; // Salir del bucle una vez encontrado
-			}
-			if (searchType.equals("ID") && book.getID().equals(query)) {
-				foundedBook = book;
-				break; // Salir del bucle una vez encontrado
-			}
-			if (searchType.equals("Titulo") && book.getTitulo().equals(query)) {
-				foundedBook = book;
-				break; // Salir del bucle una vez encontrado
-			}
-		}
+  // Method to find a book or publication by author, ID, or title
+  public GenericBookModel findBook(String query, BookSearchType searchType) {
+    for (GenericBookModel book : books) {
+      switch (searchType) {
+        case AUTHOR:
+          if (book.getAutor().equals(query)) {
+            return book; // Match by author
+          }
+          break;
+        case ID:
+          if (book.getID().equals(query)) {
+            return book; // Match by ID
+          }
+          break;
+        case TITLE:
+          if (book.getTitulo().equals(query)) {
+            return book; // Match by title
+          }
+          break;
+        default:
+          break; // Default case, should not be reached
+      }
+    }
+    return null; // Return null if no match is found
+  }
 
-		return foundedBook; // Retorna null si no se encuentra nada
-	}
-
-	public void updateBook(String ID, String nuevoTitulo, String nuevoAutor, String nuevaCategoria,
-			boolean nuevaDisponibilidad) {
-		for (GenericBookModel book : books) {
-			if (book.getID().equals(ID)) {
-				// Actualizar los atributos
-				book.setTitulo(nuevoTitulo);
-				book.setAutor(nuevoAutor);
-				book.setCategoria(nuevaCategoria);
-				book.setDisponible(nuevaDisponibilidad);
-				break; // Salir del bucle una vez encontrado y actualizado
-			}
-		}
-	}
+  // Method to update the details of a book by its ID
+  public void updateBook(String ID, String newTitle, String newAuthor, String newCategory, int newAvailability) {
+    // Find the book by ID and if found, update its details
+    GenericBookModel book = findBook(ID, BookSearchType.ID);
+    if (book != null) {
+      book.setTitulo(newTitle); // Update the title
+      book.setAutor(newAuthor); // Update the author
+      book.setCategoria(newCategory); // Update the category
+      book.setCantidadCopias(newAvailability); // Update the availability status
+    }
+  }
 }
