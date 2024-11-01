@@ -4,12 +4,16 @@ public class UserModel {
 	//WIP WAY TO COUNT LOANED BOOKS
 	protected String nombre;
 	protected String ID;
+	protected double accumulatedFees; 
+
 
 
 	public UserModel(String nombre, String ID) {
 		this.nombre = nombre;
 
 		this.ID = ID;
+		
+		this.accumulatedFees=0;
 
 	}
 	
@@ -29,8 +33,15 @@ public class UserModel {
 		ID = iD;
 	}
 	
+	public double getAccumulatedFees() {
+		return accumulatedFees;
+	}
+	
+	public void setAccumulatedFees(double Fee) {
+		this.accumulatedFees += Fee;
+	}
 	public String getAllInfo() {
-		return "Nombre: " + nombre + "\n" + "ID: " + ID+ "\n"+ "Prestamos: ";
+		return "Nombre: " + nombre + "\n" + "ID: " + ID+ "\n"+ "Multas Acumuladas: $ "+accumulatedFees+"\n"+"Prestamos: "+"\n";
 
 	}
 
