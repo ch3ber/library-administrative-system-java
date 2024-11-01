@@ -6,7 +6,7 @@ import src.utils.BookSearchType;
 public class LibraryModel {
   private static LibraryModel instance;
   private ArrayList<GenericBookModel> books = new ArrayList<>();
-
+ 
   
   //Singleton
   public static LibraryModel getInstance() {
