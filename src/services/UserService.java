@@ -20,12 +20,12 @@ public class UserService {
     return instance;
   }
 
-  // Method to add a book or publication to the library
+  // Method to add a user or publication to the library
   public void addUser(UserModel user) {
     users.add(user);
   }
 
-  // Method to find a book or publication by author, ID, or title
+  // Method to find a user or publication by author, ID, or title
   public UserModel findUser(String query, UserSearchType searchType) {
     for (UserModel user : users) {
       switch (searchType) {
