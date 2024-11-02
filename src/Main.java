@@ -14,7 +14,7 @@ public class Main {
     // Views
     HomeMenuViews homeMenuViews = new HomeMenuViews();
     InventoryViews inventoryViews = new InventoryViews();
-    LoanMenuViews loanMenuViews = new LoanMenuViews();
+    LoanViews loanMenuViews = new LoanViews();
     UserViews userViews = new UserViews();
 
     // Controllers
@@ -43,10 +43,7 @@ public class Main {
             break;
           case "Préstamos":
 //            loanController.evalOption(loanMenuViews.selectMenuOption());
-            JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
-            break;
-          case "Devoluciones":
-            JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
+            loanController.evalOption(loanMenuViews.selectMenuOption());
             break;
           case "Salir":
             JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
