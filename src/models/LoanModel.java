@@ -3,64 +3,57 @@ package src.models;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-import javax.swing.JOptionPane;
-
 public class LoanModel {
-	private GenericBookModel book; // El libro prestado
-	private UserModel user; // El usuario que solicita el prestamo
-	private LocalDate loanDate; // Fecha en que se realizo el préstamo
-	private LocalDate dueDate; // Fecha de entrega del libro
-	private boolean isReturned; // Estado del prestamo
-	private double lateFeePerDay; // Multa por dia de retraso
-	private double totalLateFees; // Total de multas acumuladas
+	private UserModel user;
+	private GenericBookModel book;
+	private LocalDate loanDate;
+	private LocalDate dueDate;
+	private boolean returned;
+	private String fechaDevolucion="";
 
-	public LocalDate getLoanDate() {
-		return loanDate;
+	public LoanModel(UserModel user, GenericBookModel book, int durationDays) {
+		this.user = user;
+		this.book = book;
+		this.loanDate = LocalDate.now();
+		this.dueDate = loanDate.plusDays(durationDays);
+		this.returned = false;
 	}
 
-	public LocalDate getDueDate() {
-		return dueDate;
+	public UserModel getUser() {
+		return user;
+	}
+
+	public GenericBookModel getBook() {
+		return book;
 	}
 
 	public boolean isReturned() {
-		return isReturned;
+		return returned;
 	}
 
-	public double getTotalLateFees() {
-		return totalLateFees;
-	}
-
-	public LoanModel(GenericBookModel book, UserModel user, int loanPeriodInDays) {
-		try{if (book.getCantidadCopias() <= 0) {
-			throw new Exception();
-		}}catch (Exception e){JOptionPane.showMessageDialog(null, "No hay copias disponibles de este libro: " + e.getMessage());}
-		this.book = book;
-		this.user = user;
-		this.loanDate = LocalDate.now();
-		this.dueDate = loanDate.plusDays(loanPeriodInDays);
-		this.isReturned = false;
-		this.lateFeePerDay = 15; // tarifa arbitraria
-		this.totalLateFees = 0.0;
-
-		// Restar una copia al momento de prestar
-		book.setCantidadCopias(book.getCantidadCopias() - 1);
-	}
-
-	public void registerReturn() {
-		if (!isReturned) {
-			isReturned = true;
-			calculateLateFees(); // Calcula multas si corresponde
-			// Restablecer el número de copias disponibles del libro
-			book.setCantidadCopias(book.getCantidadCopias() + 1);
-
+	public void setReturned(boolean returned) {
+		this.returned = returned;
+		this.fechaDevolucion=", Fecha de Entrega: " + LocalDate.now();
+		if (hasLateFee()) {
+			double lateFee = calculateLateFee();
+			user.addLateFee(lateFee); // Agregar la multa al usuario
 		}
 	}
 
-	public void calculateLateFees() {
+	public boolean hasLateFee() {
+		return LocalDate.now().isAfter(dueDate);
+	}
+
+	public double calculateLateFee() {
+		if (!hasLateFee())
+			return 0;
 		long daysLate = ChronoUnit.DAYS.between(dueDate, LocalDate.now());
-		if (daysLate > 0) {
-			totalLateFees = daysLate * lateFeePerDay;
-		}
+		return daysLate * 15;
 	}
+	
 
+	public String getLoanInfo() {
+		return "Libro: " + book.getTitulo() + ", Fecha de Préstamo: " + loanDate + ", Fecha Limite de Entrega: " + dueDate+fechaDevolucion
+				+ ", Devuelto: " + returned+"\n";
+	}
 }
