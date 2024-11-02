@@ -10,7 +10,6 @@ public class HomeMenuViews {
             "Inventario",
             "Usuarios",
             "Préstamos",
-            "Devoluciones",
             "Salir"
         },
         "Inventario");
