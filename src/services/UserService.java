@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import src.models.UserModel;
 import src.utils.UserSearchType;
 
-import javax.swing.*;
+
 
 public class UserService {
-  private static UserService instance;
-  private ArrayList<UserModel> users = new ArrayList<>();
 
-	private UserService() {}
-
+	 private static UserService instance;
+	  private ArrayList<UserModel> users = new ArrayList<>();
+	  
   //Singleton
   public static UserService getInstance() {
     if (instance == null) {
