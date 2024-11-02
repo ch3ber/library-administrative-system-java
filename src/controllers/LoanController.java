@@ -11,7 +11,7 @@ public class LoanController {
   public void evalOption (Object selectedOption) {
     String parsedSelectedOption = "";
 
-    while (!parsedSelectedOption.equals("3. Atrás")) {
+    while (!parsedSelectedOption.equals("Atrás")) {
       // the user select's cancel button
       if (selectedOption == null) {
         break;
@@ -20,19 +20,19 @@ public class LoanController {
       parsedSelectedOption = selectedOption.toString();
 
       switch (parsedSelectedOption) {
-        case "1. Realizar un préstamo":
+        case "Realizar un préstamo":
           JOptionPane.showMessageDialog(null, "Opción seleccionada: Realizar un préstamo");
           // TODAVIA NO SE IMPLEMENTA LA FUNCION
-          parsedSelectedOption = "3. Atrás";
+          parsedSelectedOption = "Atrás";
           break;
 
-        case "2. Devolver un libro":
+        case "Devolver un libro":
           JOptionPane.showMessageDialog(null, "Opción seleccionada: Devolver un libro");
           // TODAVIA NO SE IMPLEMENTA LA FUNCION
-          parsedSelectedOption = "3. Atrás";
+          parsedSelectedOption = "Atrás";
           break;
 
-        case "3. Atrás":
+        case "Atrás":
           // Regresar al menú principal
           break;
 

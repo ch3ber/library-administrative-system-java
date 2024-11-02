@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import src.models.UserModel;
 import src.utils.UserSearchType;
 
-public class UserManagementService {
-	 private static UserManagementService instance;
+public class UserService {
+	 private static UserService instance;
 	  private ArrayList<UserModel> users = new ArrayList<>();
 	  
 	  //Singleton
-	  public static UserManagementService getInstance() {
+	  public static UserService getInstance() {
 	    if (instance == null) {
-	      instance = new UserManagementService();
+	      instance = new UserService();
 	    }
 	    return instance;
 	  }

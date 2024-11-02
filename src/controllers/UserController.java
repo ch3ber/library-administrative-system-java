@@ -2,13 +2,13 @@ package src.controllers;
 
 import javax.swing.JOptionPane;
 
-import src.services.UserManagementService;
+import src.services.UserService;
 import src.models.UserModel;
 import src.utils.UserSearchType;
 import src.views.UserViews;
 
 public class UserController {
-	UserManagementService userManagementService = UserManagementService.getInstance();
+	UserService userManagementService = UserService.getInstance();
 	UserViews userView = new UserViews();
 
 	private void handleFind(String queryId, UserSearchType userSearchType) {
