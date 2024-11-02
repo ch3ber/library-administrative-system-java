@@ -1,18 +1,18 @@
-package src.models;
+package src.services;
 
 import java.util.ArrayList;
 
-import src.utils.BookSearchType;
+import src.models.UserModel;
 import src.utils.UserSearchType;
 
-public class UserManagementModel {
-	 private static UserManagementModel instance;
+public class UserManagementService {
+	 private static UserManagementService instance;
 	  private ArrayList<UserModel> users = new ArrayList<>();
 	  
 	  //Singleton
-	  public static UserManagementModel getInstance() {
+	  public static UserManagementService getInstance() {
 	    if (instance == null) {
-	      instance = new UserManagementModel();
+	      instance = new UserManagementService();
 	    }
 	    return instance;
 	  }
