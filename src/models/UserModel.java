@@ -1,22 +1,18 @@
 package src.models;
 
-import src.services.LoanService;
+import java.util.ArrayList;
 
 public class UserModel {
-	//WIP WAY TO COUNT LOANED BOOKS
 	protected String nombre;
 	protected String ID;
-	protected double accumulatedFees; 
-
-
+	protected double totalLateFees;
+	private ArrayList<LoanModel> prestamos;  // Lista de préstamos
 
 	public UserModel(String nombre, String ID) {
 		this.nombre = nombre;
-
 		this.ID = ID;
-		
-		this.accumulatedFees=0;
-
+		this.totalLateFees = 0;
+		this.prestamos = new ArrayList<>();
 	}
 	
 	public String getNombre() {
@@ -34,34 +30,24 @@ public class UserModel {
 	public void setID(String iD) {
 		ID = iD;
 	}
-	
-	public double getAccumulatedFees() {
-		return accumulatedFees;
+
+	public double getTotalLateFees() {
+		return totalLateFees;
 	}
-	
-	public void setAccumulatedFees(double Fee) {
-		this.accumulatedFees += Fee;
+
+	public void addLateFee(double fee) {
+		this.totalLateFees += fee;
 	}
-	 public String getAllInfo() { /////PASARLO AL SERVICIO
-	        String info = "Nombre: " + nombre + "\n";
-	        info += "ID: " + ID + "\n";
-	        info += "Multas Acumuladas: $ " + accumulatedFees + "\n";
-	        info += "Préstamos:\n";
 
-	        List<LoanModel> userLoans = LoanService.getInstance().getLoansByUser(this);
-	        if (userLoans.isEmpty()) {
-	            info += "No hay préstamos activos.\n";
-	        } else {
-	            for (LoanModel loan : userLoans) {
-	                info += "- Libro: " + loan.getBook().getTitulo() +
-	                        ", Fecha de Préstamo: " + loan.getLoanDate() +
-	                        ", Fecha de Devolución: " + loan.getDueDate() +
-	                        ", Devuelto: " + (loan.isReturned() ? "Sí" : "No") +
-	                        ", Multas: $" + loan.getTotalLateFees() + "\n";
-	            }
-	        }
+	public void addLoan(LoanModel loan) {
+		prestamos.add(loan);
+	}
 
-	        return info;
-	    }
-
+	public String getAllInfo() {
+		String info = "Nombre: " + nombre + "\n" + "ID: " + ID + "\n" + "Multas Acumuladas: " + totalLateFees + "\n" + "Préstamos: \n";
+		for (LoanModel loan : prestamos) {
+			info += loan.getLoanInfo();
+		}
+		return info;
+	}
 }
