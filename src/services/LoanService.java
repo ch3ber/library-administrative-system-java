@@ -5,15 +5,14 @@ import java.util.ArrayList;
 import src.models.LoanModel;
 
 public class LoanService {
-
-	private static UserService instance;
-	private ArrayList<LoanModel> users = new ArrayList<>();
-
-	// Singleton
-	public static UserService getInstance() {
-		if (instance == null) {
-			instance = new UserService();
-		}
-		return instance;
-	}
+//	private static UserService instance;
+//	private ArrayList<LoanModel> users = new ArrayList<>();
+//
+//	// Singleton
+//	public static UserService getInstance() {
+//		if (instance == null) {
+//			instance = new LoanService();
+//		}
+//		return instance;
+//	}
 }

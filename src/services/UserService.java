@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import src.models.UserModel;
 import src.utils.UserSearchType;
 
+import javax.swing.*;
+
 public class UserService {
   private static UserService instance;
   private ArrayList<UserModel> users = new ArrayList<>();
+
+	private UserService() {}
 
   //Singleton
   public static UserService getInstance() {
@@ -43,6 +47,12 @@ public class UserService {
     return null; // Return null if no match is found
   }
 
+	private boolean findUserByIndex (String userIdToFind) {
+		UserModel user = findUser(userIdToFind, UserSearchType.ID);
+		if (user == null) return false;
+		return users.remove(user);
+	}
+
   // Method to update the details of a user by its ID
   public void updateUser(String newName, String ID, String newID) {
     // Find the book by ID and if found, update its details
@@ -54,4 +64,10 @@ public class UserService {
 
     }
   }
+
+	public boolean deleteUser(String ID) {
+		// Find the book by ID and if found delete the user
+		return findUserByIndex(ID);
+
+	}
 }

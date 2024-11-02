@@ -8,11 +8,11 @@ import src.utils.UserSearchType;
 import src.views.UserViews;
 
 public class UserController {
-	UserService userManagementService = UserService.getInstance();
+	UserService userService = UserService.getInstance();
 	UserViews userView = new UserViews();
 
 	private void handleFind(String queryId, UserSearchType userSearchType) {
-		UserModel foundUser = userManagementService.findUser(queryId, userSearchType);
+		UserModel foundUser = userService.findUser(queryId, userSearchType);
 		if (foundUser == null) {
 			JOptionPane.showMessageDialog(null, "Usuario no encontrado.");
 			return;
@@ -58,7 +58,7 @@ public class UserController {
 				name = JOptionPane.showInputDialog(null, "Ingresa el Nombre", "");
 				id = JOptionPane.showInputDialog(null, "Ingresa el ID", "");
 
-				userManagementService.addUser(new UserModel(name, id));
+				userService.addUser(new UserModel(name, id));
 				parsedSelectedOption = "Atrás";
 				break;
 
@@ -66,10 +66,17 @@ public class UserController {
 				id = JOptionPane.showInputDialog(null, "Ingresa el ID", "");
 				newName = JOptionPane.showInputDialog(null, "Ingresa el Nuevo Nombre", "");
 				newID = JOptionPane.showInputDialog(null, "Ingresa el Nuevo ID", "");
-				userManagementService.updateUser(newName, id, newID);
+				userService.updateUser(newName, id, newID);
 				parsedSelectedOption = "Atrás";
 				break;
 			case "Eliminar un Usuario (ID)":
+				id = JOptionPane.showInputDialog(null, "Ingresa el ID", "");
+				boolean isUserRemoved = userService.deleteUser(id);
+				if (!isUserRemoved) {
+					JOptionPane.showMessageDialog(null, "Usuario no encontrado.");
+					return;
+				}
+				JOptionPane.showMessageDialog(null, "Usuario borrado existosamente.");
 				parsedSelectedOption = "Atrás";
 				break;
 			case "Atrás":
