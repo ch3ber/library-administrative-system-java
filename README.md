@@ -4,7 +4,11 @@ Library management system, allows to manage book inventories, member registratio
 
 
 ## Screenshots
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Home](./docs/img/home.png)
+
+![Home expand menu](./docs/img/home-menu.png)
+
+![Users section expand menu](./docs/img/users-menu.png)
 
 
 ## Features
