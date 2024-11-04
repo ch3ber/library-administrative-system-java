@@ -29,6 +29,12 @@ jobs:
           echo "Main-Class: src.Main" > manifest.txt
           mkdir -p dist
           jar cvfm dist/library-administrative-system.jar manifest.txt -C build .  # Crea el archivo JAR con el manifiesto
+      - name: Debugg
+        run: |
+          echo "List diretories"
+          ls -la
+          echo "List files in dist directory"
+          ls -la ./dist
 
   release:
     needs: build
