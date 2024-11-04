@@ -2,48 +2,108 @@ package src.models;
 
 import java.util.ArrayList;
 
+import src.utils.BookSearchType;
+
 public class LibraryModel {
+	private static LibraryModel instance;
+	private ArrayList<GenericBookModel> books = new ArrayList<>();
 
-	ArrayList<GenericBookModel> books = new ArrayList<>(); // GenericBookModel para soportar ambas subclases
+	/**
+	 * Constructor privado para implementar el Patrón Singleton.
+	 */
+	private LibraryModel() {
+	}
 
-	// Método para agregar un libro o publicación
-	public void addBook(GenericBookModel book) {
+	/**
+	 * Obtener la instancia única de LibraryModel (Singleton).
+	 * @return instancia de LibraryModel.
+	 */
+	public static LibraryModel getInstance() {
+		if (instance == null) {
+			instance = new LibraryModel();
+		}
+		return instance;
+	}
+
+	/**
+	 * Método para agregar un libro a la biblioteca.
+	 * @param book Objeto BookModel que representa el libro a agregar.
+	 */
+	public void addBook(BookModel book) {
 		books.add(book);
 	}
 
-	// Método para encontrar un libro o publicación por autor, ID o título
-	public GenericBookModel findBookByAuthor(String query, String searchType) {
-		GenericBookModel foundedBook = null;
-
-		for (GenericBookModel book : books) {
-			if (searchType.equals("Autor") && book.getAutor().equals(query)) {
-				foundedBook = book;
-				break; // Salir del bucle una vez encontrado
-			}
-			if (searchType.equals("ID") && book.getID().equals(query)) {
-				foundedBook = book;
-				break; // Salir del bucle una vez encontrado
-			}
-			if (searchType.equals("Titulo") && book.getTitulo().equals(query)) {
-				foundedBook = book;
-				break; // Salir del bucle una vez encontrado
-			}
-		}
-
-		return foundedBook; // Retorna null si no se encuentra nada
+	/**
+	 * Método para agregar una publicación seriada a la biblioteca.
+	 * @param book Objeto SerialPostsModel que representa la publicación a agregar.
+	 */
+	public void addSerialPost(SerialPostsModel book) {
+		books.add(book);
 	}
 
-	public void updateBook(String ID, String nuevoTitulo, String nuevoAutor, String nuevaCategoria,
-			boolean nuevaDisponibilidad) {
+	/**
+	 * Método para encontrar un libro o publicación por autor, ID o título.
+	 * @param query La consulta que se desea buscar (autor, ID o título).
+	 * @param searchType El tipo de búsqueda a realizar (autor, ID, título).
+	 * @return El libro o publicación encontrada, o null si no se encuentra ninguna coincidencia.
+	 */
+	public GenericBookModel findBook(String query, BookSearchType searchType) {
 		for (GenericBookModel book : books) {
-			if (book.getID().equals(ID)) {
-				// Actualizar los atributos
-				book.setTitulo(nuevoTitulo);
-				book.setAutor(nuevoAutor);
-				book.setCategoria(nuevaCategoria);
-				book.setDisponible(nuevaDisponibilidad);
-				break; // Salir del bucle una vez encontrado y actualizado
+			switch (searchType) {
+				case AUTHOR:
+					if (book.getAutor().equals(query)) {
+						return book;
+					}
+					break;
+				case ID:
+					if (book.getID().equals(query)) {
+						return book;
+					}
+					break;
+				case TITLE:
+					if (book.getTitulo().equals(query)) {
+						return book;
+					}
+					break;
+				default:
+					break; // Caso por defecto, no debe alcanzarse
 			}
 		}
+		return null; // Retorna null si no se encuentra ninguna coincidencia
+	}
+
+	/**
+	 * Método para actualizar los detalles de un libro por su ID.
+	 * @param ID El ID del libro a actualizar.
+	 * @param newTitle El nuevo título del libro.
+	 * @param newAuthor El nuevo autor del libro.
+	 * @param newCategory La nueva categoría del libro.
+	 * @param newAvailability La nueva cantidad de copias disponibles.
+	 */
+	public void updateBook(String ID, String newTitle, String newAuthor, String newCategory, int newAvailability) {
+		GenericBookModel book = findBook(ID, BookSearchType.ID);
+		if (book != null) {
+			book.setTitulo(newTitle);
+			book.setAutor(newAuthor);
+			book.setCategoria(newCategory);
+			book.setCantidadCopias(newAvailability);
+		}
+	}
+
+	/**
+	 * Obtener la información de todos los libros de la biblioteca.
+	 * @return Una cadena con la información de todos los libros.
+	 */
+	public String getAllBooks() {
+		StringBuilder infoLibrary = new StringBuilder();
+		if (books.isEmpty()) {
+			infoLibrary.append("No hay libros en la biblioteca");
+		} else {
+			for (GenericBookModel book : books) {
+				infoLibrary.append(book.getAllInfo()).append("\n\n");
+			}
+		}
+
+		return infoLibrary.toString();
 	}
 }

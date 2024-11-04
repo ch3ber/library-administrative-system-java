@@ -3,15 +3,15 @@ package src.views;
 import javax.swing.*;
 
 public class HomeMenuViews {
-  public Object selectMenuOption() {
+  public Object selectHomeMenuOption() {
     return JOptionPane.showInputDialog(
-        null, "Escoja una opción", "Menú Biblioteca", JOptionPane.INFORMATION_MESSAGE,
+        null, "Escoja una opción:", "Menú Biblioteca", JOptionPane.INFORMATION_MESSAGE,
         null, new Object[]{
-            "1. Inventario",
-            "2. Registrar un nuevo usuario",
-            "3. Préstamos",
-            "4. Salir"
+            "Inventario",
+            "Usuarios",
+            "Préstamos",
+            "Salir"
         },
-        "1. Inventario");
+        "Inventario");
   }
 }

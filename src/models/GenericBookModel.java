@@ -2,19 +2,22 @@ package src.models;
 
 public abstract class GenericBookModel {
 
-	private String titulo;
-	private String autor;
-	private String categoria;
-	private boolean disponible;
-	private String ID;
+	protected String titulo;
+	protected String autor;
+	protected String categoria;
+	protected int cantidadCopias;
+	protected String ID;
 
-	public GenericBookModel(String titulo, String autor, String ID, String categoria, boolean disponible) {
+	public GenericBookModel(String titulo, String autor, String ID, String categoria, int cantidadCopias) {
 		this.titulo = titulo;
 		this.autor = autor;
 		this.ID = ID;
 		this.categoria = categoria;
-		this.disponible = disponible;
+		this.cantidadCopias = cantidadCopias;
 	}
+
+	public abstract String getAllInfo(); 
+	
 
 	public String getTitulo() {
 		return titulo;
@@ -44,11 +47,11 @@ public abstract class GenericBookModel {
 		this.categoria = categoria;
 	}
 
-	public boolean isDisponible() {
-		return disponible;
+	public int getCantidadCopias() {
+		return cantidadCopias;
 	}
 
-	public void setDisponible(boolean disponible) {
-		this.disponible = disponible;
+	public void setCantidadCopias(int cantidadCopias) {
+		this.cantidadCopias = cantidadCopias;
 	}
 }
