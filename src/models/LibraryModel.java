@@ -2,18 +2,22 @@ package src.models;
 
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import src.utils.BookSearchType;
 
 public class LibraryModel {
 	private static LibraryModel instance;
 	private ArrayList<GenericBookModel> books = new ArrayList<>();
 
+	/**
+	 * Constructor privado para implementar el Patrón Singleton.
+	 */
 	private LibraryModel() {
 	}
 
-	// Singleton
+	/**
+	 * Obtener la instancia única de LibraryModel (Singleton).
+	 * @return instancia de LibraryModel.
+	 */
 	public static LibraryModel getInstance() {
 		if (instance == null) {
 			instance = new LibraryModel();
@@ -21,64 +25,85 @@ public class LibraryModel {
 		return instance;
 	}
 
-	// Method to add a book or publication to the library
+	/**
+	 * Método para agregar un libro a la biblioteca.
+	 * @param book Objeto BookModel que representa el libro a agregar.
+	 */
 	public void addBook(BookModel book) {
 		books.add(book);
 	}
 
+	/**
+	 * Método para agregar una publicación seriada a la biblioteca.
+	 * @param book Objeto SerialPostsModel que representa la publicación a agregar.
+	 */
 	public void addSerialPost(SerialPostsModel book) {
 		books.add(book);
 	}
 
-	// Method to find a book or publication by author, ID, or title
+	/**
+	 * Método para encontrar un libro o publicación por autor, ID o título.
+	 * @param query La consulta que se desea buscar (autor, ID o título).
+	 * @param searchType El tipo de búsqueda a realizar (autor, ID, título).
+	 * @return El libro o publicación encontrada, o null si no se encuentra ninguna coincidencia.
+	 */
 	public GenericBookModel findBook(String query, BookSearchType searchType) {
 		for (GenericBookModel book : books) {
 			switch (searchType) {
-			case AUTHOR:
-				if (book.getAutor().equals(query)) {
-					return book; // Match by author
-				}
-				break;
-			case ID:
-				if (book.getID().equals(query)) {
-					return book; // Match by ID
-				}
-				break;
-			case TITLE:
-				if (book.getTitulo().equals(query)) {
-					return book; // Match by title
-				}
-				break;
-			default:
-				break; // Default case, should not be reached
+				case AUTHOR:
+					if (book.getAutor().equals(query)) {
+						return book;
+					}
+					break;
+				case ID:
+					if (book.getID().equals(query)) {
+						return book;
+					}
+					break;
+				case TITLE:
+					if (book.getTitulo().equals(query)) {
+						return book;
+					}
+					break;
+				default:
+					break; // Caso por defecto, no debe alcanzarse
 			}
 		}
-		return null; // Return null if no match is found
+		return null; // Retorna null si no se encuentra ninguna coincidencia
 	}
 
-	// Method to update the details of a book by its ID
+	/**
+	 * Método para actualizar los detalles de un libro por su ID.
+	 * @param ID El ID del libro a actualizar.
+	 * @param newTitle El nuevo título del libro.
+	 * @param newAuthor El nuevo autor del libro.
+	 * @param newCategory La nueva categoría del libro.
+	 * @param newAvailability La nueva cantidad de copias disponibles.
+	 */
 	public void updateBook(String ID, String newTitle, String newAuthor, String newCategory, int newAvailability) {
-		// Find the book by ID and if found, update its details
 		GenericBookModel book = findBook(ID, BookSearchType.ID);
 		if (book != null) {
-			book.setTitulo(newTitle); // Update the title
-			book.setAutor(newAuthor); // Update the author
-			book.setCategoria(newCategory); // Update the category
-			book.setCantidadCopias(newAvailability); // Update the availability status
+			book.setTitulo(newTitle);
+			book.setAutor(newAuthor);
+			book.setCategoria(newCategory);
+			book.setCantidadCopias(newAvailability);
 		}
-
 	}
 
+	/**
+	 * Obtener la información de todos los libros de la biblioteca.
+	 * @return Una cadena con la información de todos los libros.
+	 */
 	public String getAllBooks() {
-		String infoLibrary = "";
+		StringBuilder infoLibrary = new StringBuilder();
 		if (books.isEmpty()) {
-			infoLibrary = "No hay libros en la biblioteca";
+			infoLibrary.append("No hay libros en la biblioteca");
 		} else {
 			for (GenericBookModel book : books) {
-				infoLibrary += book.getAllInfo() + "\n\n";
+				infoLibrary.append(book.getAllInfo()).append("\n\n");
 			}
 		}
 
-		return infoLibrary;
+		return infoLibrary.toString();
 	}
 }
