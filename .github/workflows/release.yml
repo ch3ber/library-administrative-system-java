@@ -1,0 +1,67 @@
+name: Java CI and Release
+
+on:
+  push:
+    branches:
+      - main  # Ejecuta este workflow en cada push a la rama main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'  # Cambia a la versión de Java que necesitas
+
+      - name: Compile Java Files
+        run: |
+          mkdir -p build
+          javac -d build $(find src -name "*.java")  # Compila todos los archivos .java y los coloca en la carpeta build
+
+      - name: Package JAR
+        run: |
+          echo "Main-Class: src.Main" > manifest.txt
+          mkdir -p dist
+          jar cvfm dist/library-administrative-system.jar manifest.txt -C build .  # Crea el archivo JAR con el manifiesto
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: "Release v${{ github.run_number }}"
+          draft: false
+          prerelease: false
+
+      - name: Upload JAR file
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: dist/library-administrative-system.jar  # Ruta del archivo JAR generado
+          asset_name: library-administrative-system.jar
+          asset_content_type: application/java-archive
