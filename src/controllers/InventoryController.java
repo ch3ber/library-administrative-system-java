@@ -57,6 +57,11 @@ public class InventoryController {
 			int newNumCopiesParsed;
 
 			switch (parsedSelectedOption) {
+			case "Mostrar Inventario":
+				String infoLibrary=libraryModel.showAllBooks();
+				JOptionPane.showMessageDialog(null, infoLibrary, "Lista de Libros", JOptionPane.INFORMATION_MESSAGE);
+				parsedSelectedOption = "Atrás";
+				break;
 			case "Buscar por ID":
 				queryId = JOptionPane.showInputDialog(null, "Ingresa su ISBN o ISSN", "");
 				this.handleFind(queryId, BookSearchType.ID);

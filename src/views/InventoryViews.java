@@ -10,6 +10,7 @@ public class InventoryViews {
         "Menú Inventario",
         JOptionPane.INFORMATION_MESSAGE,
         null, new Object[]{
+        	"Mostrar Inventario",
             "Buscar por ID",
             "Buscar por titulo",
             "Buscar por autor",
@@ -19,6 +20,6 @@ public class InventoryViews {
             "Eliminar un libro (ID)",
             "Atrás"
         },
-        "Buscar por ID");
+        "Mostrar Inventario");
   }
 }
