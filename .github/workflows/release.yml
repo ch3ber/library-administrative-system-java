@@ -56,6 +56,13 @@ jobs:
           draft: false
           prerelease: false
 
+      - name: Debugg
+        run: |
+          echo "List diretories"
+          ls -la
+          echo "List files in dist directory"
+          ls -la ./dist
+
       - name: Upload JAR file
         uses: actions/upload-release-asset@v1
         env:
