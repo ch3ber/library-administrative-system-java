@@ -6,6 +6,7 @@ import src.models.LibraryModel;
 import src.models.SerialPostsModel;
 import src.utils.BookSearchType;
 import src.views.BookInfoView;
+import src.views.InventoryViews;
 
 import javax.swing.*;
 
@@ -17,6 +18,7 @@ import javax.swing.*;
 public class InventoryController {
 	LibraryModel libraryModel = LibraryModel.getInstance();
 	BookInfoView bookInfoView = new BookInfoView();
+	InventoryViews inventoryViews = new InventoryViews();
 
 	private void handleFind(String queryId, BookSearchType bookSearchType) {
 		GenericBookModel foundBook = libraryModel.findBook(queryId, bookSearchType);
@@ -58,8 +60,8 @@ public class InventoryController {
 
 			switch (parsedSelectedOption) {
 			case "Mostrar Inventario":
-				String infoLibrary=libraryModel.showAllBooks();
-				JOptionPane.showMessageDialog(null, infoLibrary, "Lista de Libros", JOptionPane.INFORMATION_MESSAGE);
+				String infoLibrary=libraryModel.getAllBooks();
+				inventoryViews.showAllBooks(infoLibrary);
 				parsedSelectedOption = "Atrás";
 				break;
 			case "Buscar por ID":

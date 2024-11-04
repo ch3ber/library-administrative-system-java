@@ -22,4 +22,8 @@ public class InventoryViews {
         },
         "Mostrar Inventario");
   }
+  
+  public void showAllBooks(String infoLibrary) {
+		JOptionPane.showMessageDialog(null, infoLibrary, "Lista de Libros", JOptionPane.INFORMATION_MESSAGE);
+  }
 }

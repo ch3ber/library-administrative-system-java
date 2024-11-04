@@ -69,7 +69,7 @@ public class LibraryModel {
 
 	}
 
-	public String showAllBooks() {
+	public String getAllBooks() {
 		String infoLibrary = "";
 		if (books.isEmpty()) {
 			infoLibrary = "No hay libros en la biblioteca";
