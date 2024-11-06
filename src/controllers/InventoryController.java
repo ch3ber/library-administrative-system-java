@@ -41,7 +41,7 @@ public class InventoryController {
 			parsedSelectedOption = selectedOption.toString();
 
 			// var for find book
-			String queryId;
+			String query;
 
 			// vars for add book
 			String title;
@@ -65,20 +65,21 @@ public class InventoryController {
 				parsedSelectedOption = "Atrás";
 				break;
 			case "Buscar por ID":
-				queryId = JOptionPane.showInputDialog(null, "Ingresa su ISBN o ISSN", "");
-				this.handleFind(queryId, BookSearchType.ID);
+				query = JOptionPane.showInputDialog(null, "Ingresa su ISBN o ISSN", "");
+				this.handleFind(query, BookSearchType.ID);
 				parsedSelectedOption = "Atrás";
 				break;
 
 			case "Buscar por titulo":
-				queryId = JOptionPane.showInputDialog(null, "Ingresa su titulo", "");
-				this.handleFind(queryId, BookSearchType.TITLE);
+				query = JOptionPane.showInputDialog(null, "Ingresa su titulo", "");
+				this.handleFind(query, BookSearchType.TITLE);
 				parsedSelectedOption = "Atrás";
 				break;
 
-			case "Buscar por autor":
-				queryId = JOptionPane.showInputDialog(null, "Ingresa el nombre del autor", "");
-				this.handleFind(queryId, BookSearchType.AUTHOR);
+			case "Buscar por categoria":
+				query = JOptionPane.showInputDialog(null, "Ingresa el nombre de la categoria", "");
+				String filteredBooks = libraryModel.getAllBooksByCategory(query);
+				JOptionPane.showMessageDialog(null, filteredBooks);
 				parsedSelectedOption = "Atrás";
 				break;
 

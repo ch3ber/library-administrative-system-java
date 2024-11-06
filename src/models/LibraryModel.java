@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import src.utils.BookSearchType;
 
+import javax.swing.*;
+
 public class LibraryModel {
 	private static LibraryModel instance;
 	private ArrayList<GenericBookModel> books = new ArrayList<>();
@@ -50,8 +52,8 @@ public class LibraryModel {
 	public GenericBookModel findBook(String query, BookSearchType searchType) {
 		for (GenericBookModel book : books) {
 			switch (searchType) {
-				case AUTHOR:
-					if (book.getAutor().equals(query)) {
+				case CATEGORY:
+					if (book.getCategoria().equals(query)) {
 						return book;
 					}
 					break;
@@ -104,6 +106,20 @@ public class LibraryModel {
 			}
 		}
 
+		return infoLibrary.toString();
+	}
+
+	public String getAllBooksByCategory(String category) {
+		StringBuilder infoLibrary = new StringBuilder();
+		if (books.isEmpty()) return infoLibrary.append("No hay libros en la biblioteca").toString();
+
+		for (GenericBookModel book : books) {
+			if (book.getCategoria().equals(category)) {
+				infoLibrary.append(book.getAllInfo()).append("\n\n");
+			}
+		}
+
+		if (infoLibrary.isEmpty()) return infoLibrary.append("No hay libros con la categoria: " + category).toString();
 		return infoLibrary.toString();
 	}
 }

@@ -13,7 +13,7 @@ public class InventoryViews {
         	"Mostrar Inventario",
             "Buscar por ID",
             "Buscar por titulo",
-            "Buscar por autor",
+            "Buscar por categoria",
             "Agregar un nuevo libro",
             "Agregar una publicacion",
             "Actualizar un libro (ID)",
