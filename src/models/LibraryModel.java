@@ -3,6 +3,7 @@ package src.models;
 import java.util.ArrayList;
 
 import src.utils.BookSearchType;
+import src.utils.UserSearchType;
 
 import javax.swing.*;
 
@@ -90,6 +91,18 @@ public class LibraryModel {
 			book.setCategoria(newCategory);
 			book.setCantidadCopias(newAvailability);
 		}
+	}
+	
+	private boolean findBookByIndex (String bookIdToFind) {
+		GenericBookModel book = findBook(bookIdToFind, BookSearchType.ID);
+		if (book == null) return false;
+		return books.remove(book);
+	}
+	
+	public boolean deleteBook(String ID) {
+		// Find the user by ID and if found delete the user
+		return findBookByIndex(ID);
+
 	}
 
 	/**

@@ -21,12 +21,19 @@ public class InventoryController {
 	InventoryViews inventoryViews = new InventoryViews();
 
 	private void handleFind(String queryId, BookSearchType bookSearchType) {
-		GenericBookModel foundBook = libraryModel.findBook(queryId, bookSearchType);
-		if (foundBook == null) {
-			JOptionPane.showMessageDialog(null, "Libro no encontrado.");
-			return;
-		}
-		bookInfoView.showAllInfo(foundBook.getAllInfo());
+	    try {
+	        GenericBookModel foundBook = libraryModel.findBook(queryId, bookSearchType);
+	        
+	        if (foundBook == null) {
+	            JOptionPane.showMessageDialog(null, "Libro no encontrado.");
+	            return;
+	        }
+	        
+	        bookInfoView.showAllInfo(foundBook.getAllInfo());
+	        
+	    } catch (Exception e) {
+	        JOptionPane.showMessageDialog(null, "Ocurrió un error al buscar el libro: " + e.getMessage());
+	    }
 	}
 
 	public void evalOption(Object selectedOption) {
@@ -120,6 +127,9 @@ public class InventoryController {
 				parsedSelectedOption = "Atrás";
 				break;
 			case "Eliminar un libro (ID)":
+				id = JOptionPane.showInputDialog(null, "Ingresa ID del libro a eliminar", "");
+				libraryModel.deleteBook(id);
+				JOptionPane.showMessageDialog(null, "Libro Eliminado Exitosamente");
 				parsedSelectedOption = "Atrás";
 				break;
 			case "Atrás":

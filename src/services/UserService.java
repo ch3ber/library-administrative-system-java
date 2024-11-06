@@ -65,7 +65,7 @@ public class UserService {
   }
 
 	public boolean deleteUser(String ID) {
-		// Find the book by ID and if found delete the user
+		// Find the user by ID and if found delete the user
 		return findUserByIndex(ID);
 
 	}
